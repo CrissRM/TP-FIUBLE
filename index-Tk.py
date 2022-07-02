@@ -9,7 +9,7 @@ from formularios.formulario_configuracion_defecto import formulario_configuracio
 from configuraciones.textos import texto
 
 def interfaz_grafica():
-    textos = texto()
+    textos = texto("es")
     root = interfaz()
     
     lista_textos = []
@@ -18,7 +18,7 @@ def interfaz_grafica():
         if archivo.suffix == ".csv" or archivo.suffix == ".txt":
             lista_textos.append(archivos.name)
     
-    if len(lista_textos) == 0:
+    if len(lista_textos) == 0: 
         msg_error(textos["MSJ_ERROR_SIN_ARCHIVO"])
         msg_info(textos["MSJ_CERRAR_PROGRAMA"])
         root.destroy()
@@ -26,8 +26,8 @@ def interfaz_grafica():
         titulo_aplicacion(root)
 
         botones = marco_visible(root)
-        boton_registar(botones,registrarse,[formulario_registro,root,botones]) 
-        boton_ingresar(botones,ingresar,[botones,defecto(root,botones),personalizado(root,botones)])
+        boton_registar(botones,registrarse,[formulario_registro,root,botones,textos]) 
+        boton_ingresar(botones,ingresar,[botones,defecto(root,botones,textos),personalizado(root,botones,textos),textos])
 
     root.mainloop()
 

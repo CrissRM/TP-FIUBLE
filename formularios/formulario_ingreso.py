@@ -1,10 +1,9 @@
 from accion_botones.acceder import acceder
 from accion_botones.volver import volver 
 from configuraciones.estilos_widgets import *
-from configuraciones.textos import texto
 
-def formulario_ingreso(root,botones,jugadores,cant,inicia_app):
-  textos = texto()  
+def formulario_ingreso(root,botones,jugadores,cant,inicia_app,textos): 
+  
   formulario_ingreso = marco_invisible(root) 
   #-----------------------------------------------------------------------------
   data_nombre = marco_visible(formulario_ingreso)
@@ -20,8 +19,8 @@ def formulario_ingreso(root,botones,jugadores,cant,inicia_app):
   
   #-----------------------------------------------------------------------------
   botones = marco_visible(formulario_ingreso)
-  boton_volver(botones,volver,[formulario_ingreso,botones])
-  boton_acceder(botones,acceder,[nombre_entry,clave_entry,jugadores,cant,inicia_app,root])
+  boton_volver(botones,volver,[formulario_ingreso,botones,textos])
+  boton_acceder(botones,acceder,[nombre_entry,clave_entry,jugadores,cant,inicia_app,root,textos])
   #----------------------------------------------------------------------------
   
   return formulario_ingreso

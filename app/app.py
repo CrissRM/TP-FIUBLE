@@ -2,11 +2,11 @@ from time import time
 from random import choice
 from acciones_funciones.validadores import validar_condicion_palabra
 from configuraciones.datos_iniciales import obtener_color
-from configuraciones.textos import texto
+
 
     
-def application(datos_iniciales,dicc_jugadores):
-    textos = texto()
+def application(datos_iniciales,dicc_jugadores,textos):
+    
     print("\x1b[33m","*"*50,"\x1b[0m")
     print("\x1b[33m","*"*10,textos["JUEGO_INICIALIZADO"],"*"*10,"\x1b[0m")
     
@@ -24,7 +24,7 @@ def application(datos_iniciales,dicc_jugadores):
         
         ganador_parcial = False
         
-        palabra = validar_condicion_palabra()
+        palabra = validar_condicion_palabra(textos)
         
         for player,data in dicc_jugadores.items():
             if player == turno:

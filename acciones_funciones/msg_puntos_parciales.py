@@ -1,14 +1,12 @@
 from configuraciones.formatear import formatear_tiempo
-from configuraciones.textos import texto
 
-textos = texto()
-
-def msg_puntos_parciales(puntos,ronda_terminada,dicc_jugadores):
+ 
+def msg_puntos_parciales(puntos,ronda_terminada,dicc_jugadores,textos):
 
   if not ronda_terminada["ganador_parcial"]:
-    mensaje_para_usurio(dicc_jugadores,puntos,ronda_terminada)
+    mensaje_para_usurio(dicc_jugadores,puntos,ronda_terminada,textos)
   else:
-    mensaje_para_usurio(dicc_jugadores,puntos,ronda_terminada)
+    mensaje_para_usurio(dicc_jugadores,puntos,ronda_terminada,textos)
 
 def sumar_acierto(ronda_terminada,dicc_jugadores):
   jugador_acerto = ronda_terminada["ganador_parcial"]
@@ -38,7 +36,7 @@ def mensaje_for(dicc_jugadores,puntos_ronda,ronda_terminada):
         else:
           mensaje_if_green(jugador,-puntos_ronda,puntos)
 
-def mensaje_para_usurio(dicc_jugadores,puntos_ronda,ronda_terminada):
+def mensaje_para_usurio(dicc_jugadores,puntos_ronda,ronda_terminada,textos):
   print("\n\x1b[33m","*"*33,{textos["CABECERA_PUNTAJES"]},"*"*33,"\x1b[0m")
   print("\n\x1b[33m"," "*20,f'{textos["COL_JUGADOR"]:15} | {textos["COL_PUNTOS"]:6} | {textos["COL_ACOMULADO"]:9} |\x1b[0m')
   

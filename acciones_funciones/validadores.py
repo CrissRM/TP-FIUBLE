@@ -1,10 +1,7 @@
 from configuraciones.estilos_widgets import msg_error,msg_warning
 from configuraciones.datos_iniciales import formatear_linea,condiciones_iniciales
-from configuraciones.textos import texto as texto_msj
 
-textos = texto_msj()
-
-def nombre(nombre):
+def nombre(nombre,textos):
     if 4<= len(nombre) <=15:
         caracteres_validos = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyzáÁéÉíÍóÓúÚ0123456789_"
         i = 0
@@ -23,7 +20,7 @@ def nombre(nombre):
         res = False
     return res
 
-def contrasenia(password,error = False,exceso_char=False):
+def contrasenia(password,textos,error = False,exceso_char=False):
     
     
     caracteres_validos ={
@@ -157,7 +154,7 @@ def contrasenia(password,error = False,exceso_char=False):
   
     return res
 
-def texto(valor):
+def texto(valor,textos):
   try:
     valor_a_validar = int(valor)
   except ValueError:
@@ -185,7 +182,7 @@ def usuario(nombre):
     
   return existe
 
-def sesion(nombre,contrasenia):
+def sesion(nombre,contrasenia,textos):
   existe = False
   try:
     with open("archivos/jugadores.csv","r") as archivo_csv:
@@ -215,7 +212,7 @@ def formatear_palabra(palabra):
             lista[i] = letras[lista[i]]
     return "".join(lista)
 
-def validar_condicion_palabra():
+def validar_condicion_palabra(textos):
     """
     """
     

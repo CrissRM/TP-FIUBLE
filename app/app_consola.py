@@ -1,11 +1,10 @@
 from datetime import datetime
 from app.inicia_juego import inicia_juego
 from configuraciones.formatear import formatear_configuracion_archivo
-from configuraciones.textos import texto
 
-def inicia_app(jugadores):  
-    textos = texto()
-    estadisticas_finales_jugadores = inicia_juego(jugadores)
+def inicia_app(jugadores,textos):  
+
+    estadisticas_finales_jugadores = inicia_juego(jugadores,textos)
     
     print("\n\n","*"*75)
     print("*"*30,textos["JUEGO_FINALIZADO"],"*"*30,"\n")

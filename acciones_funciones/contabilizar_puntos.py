@@ -1,6 +1,6 @@
 from acciones_funciones.msg_puntos_parciales import msg_puntos_parciales
 
-def contabilizar_puntos(contador_credito,ganador_parcial,turno,dicc_jugadores,ronda_terminada):
+def contabilizar_puntos(contador_credito,ganador_parcial,turno,dicc_jugadores,ronda_terminada,textos): 
     """
     """
     if contador_credito == 0:
@@ -32,7 +32,7 @@ def contabilizar_puntos(contador_credito,ganador_parcial,turno,dicc_jugadores,ro
             else:
                 dicc_jugadores[key][0] += -puntos
     
-    msg_puntos_parciales(puntos,ronda_terminada,dicc_jugadores)
+    msg_puntos_parciales(puntos,ronda_terminada,dicc_jugadores,textos)
 
     
     return dicc_jugadores

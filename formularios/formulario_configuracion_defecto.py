@@ -1,11 +1,11 @@
 from accion_botones.confirmar_defecto import confirmar
 from accion_botones.volver import volver 
 from configuraciones.estilos_widgets import *
-from configuraciones.textos import texto
 
 
-def formulario_configuracion_defecto(root,botones):
-    textos = texto()
+
+def formulario_configuracion_defecto(root,botones,textos):
+    
     entrada_jugadores = marco_invisible(root)
     #------------------------------------------------------------------------------
     jugadores = marco_visible(entrada_jugadores)
@@ -13,8 +13,8 @@ def formulario_configuracion_defecto(root,botones):
     players_entry = entrada_texto(jugadores)
     #-----------------------------------------------------------------------------
     marco_botones = marco_visible(entrada_jugadores)
-    boton_confirmar(marco_botones,confirmar,[players_entry,entrada_jugadores,root,botones])
+    boton_confirmar_defecto(marco_botones,confirmar,[players_entry,entrada_jugadores,root,botones,textos]) 
 
-    boton_volver(marco_botones,volver,[entrada_jugadores,botones])
+    boton_volver(marco_botones,volver,[entrada_jugadores,botones,textos])
   
     return entrada_jugadores

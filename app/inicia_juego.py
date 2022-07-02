@@ -7,7 +7,7 @@ from datetime import datetime
 from acciones_funciones.contabilizar_puntos import contabilizar_puntos
 
 
-def inicia_juego(jugadores):
+def inicia_juego(jugadores,textos):
   os.system("clear")
   os.system("cls")
   turno = choice(jugadores) 
@@ -38,7 +38,7 @@ def inicia_juego(jugadores):
     datos_iniciales["jugadores"] = datos_jugadores
     datos_iniciales["turno"] = turno
     
-    ronda_terminada = application(datos_iniciales,datos_jugadores)
+    ronda_terminada = application(datos_iniciales,datos_jugadores,textos)
       
     ronda_terminada["inicia_juego"] = inicia_juego
       
@@ -46,7 +46,7 @@ def inicia_juego(jugadores):
     turno_jugador = ronda_terminada["turno"]
     creditos = ronda_terminada["contador_credito"]
     
-    dicc_jugadores = contabilizar_puntos(creditos,ganador_parcial,turno_jugador,datos_jugadores,ronda_terminada) 
+    dicc_jugadores = contabilizar_puntos(creditos,ganador_parcial,turno_jugador,datos_jugadores,ronda_terminada,textos) 
     
 
     os.system("clear")

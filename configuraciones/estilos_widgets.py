@@ -1,8 +1,6 @@
 from tkinter import Tk,Label,Button,Entry,Label,Frame,messagebox as mb
 from configuraciones.estilos import estilos
-from configuraciones.textos import texto
 
-textos = texto()
 
 def interfaz():
     root = Tk()
@@ -26,10 +24,11 @@ def titulo_aplicacion(root):
         foreground=estilos["FOREGROUND_PRIMARY"],
         ).pack(side="top",padx=10,pady=10)
 
-def boton_registar(root,funct,arg):
+def boton_registar(root,funct,arg): 
+    
     boton = Button(
         root,
-        text="REGISTARSE",
+        text=arg[3]["BOTON_REGISTRAR"],
         font=("Releway",10,"normal"),
         padx=5,
         pady=5,
@@ -48,9 +47,10 @@ def boton_registar(root,funct,arg):
     return boton
 
 def boton_ingresar(root,funct,arg):
+    
     boton = Button(
         root,
-        text="INGRESAR",
+        text=arg[3]["BOTON_INGRESAR"],
         font=("Releway",10,"normal"),
         padx=5,
         pady=5,
@@ -70,7 +70,7 @@ def boton_ingresar(root,funct,arg):
 def boton_volver(root,funct,arg):
     boton = Button(
         root,
-        text="VOLVER",
+        text=arg[2]["BOTON_VOLVER"],
         padx=5,
         pady=5,
         font=("Releway",10,"normal"),
@@ -85,7 +85,7 @@ def boton_volver(root,funct,arg):
 def boton_guardar_registro(root,funct,arg):
     boton = Button(
         root,
-        text="GUARDAR",
+        text=arg[5]["BOTON_GUARDAR_REGISTRO"],
         padx=5,
         pady=5,
         font=("Releway",10,"normal"),
@@ -101,7 +101,7 @@ def boton_guardar_registro(root,funct,arg):
 def boton_acceder(root,funct,arg):
     boton = Button(
         root,
-        text="ACCEDER",
+        text=arg[6]["BOTON_ACCEDER"],
         padx=5,
         pady=5,
         font=("Releway",10,"normal"),
@@ -114,10 +114,26 @@ def boton_acceder(root,funct,arg):
 
     return boton
 
-def boton_confirmar(root,funct,arg):
+def boton_confirmar_defecto(root,funct,arg): 
     boton = Button(
         root,
-        text="CONFIRMAR",
+        text=arg[4]["BOTON_CONFIRMAR"],
+        padx=5,
+        pady=5,
+        font=("Releway",10,"normal"),
+        background="green",
+        foreground="#fff",
+        command=lambda: funct(arg)
+    )
+
+    boton.pack(side="left",padx=10,pady=10)
+
+    return boton
+
+def boton_confirmar_personalizada(root,funct,arg): 
+    boton = Button(
+        root,
+        text=arg[6]["BOTON_CONFIRMAR"],
         padx=5,
         pady=5,
         font=("Releway",10,"normal"),
@@ -192,14 +208,14 @@ def marco_invisible(root):
 
     return marco
 
-def msg_warning(msg):
+def msg_warning(msg,textos):
   mb.showwarning(textos["WIDGET_WARNING_TITULO"],msg)
 
-def msg_error(msg):
+def msg_error(msg,textos):
   mb.showerror(textos["WIDGET_ERROR_TITULO"],msg)
 
-def msg_info(msg):
+def msg_info(msg,textos):
   mb.showinfo(textos["WIDGET_INFO_TITULO"],msg)
 
-def msg_confirm(msg):
+def msg_confirm(msg,textos):
   return mb.askyesno(textos["WIDGET_CONFIRM_TITULO"],msg)

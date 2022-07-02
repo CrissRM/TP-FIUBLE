@@ -4,19 +4,18 @@ from acciones_funciones.diccionario_de_palabras import diccionario_de_palabras
 from formularios.formulario_ingreso import formulario_ingreso
 from app.app_consola import inicia_app
 from configuraciones.estilos_widgets import msg_warning
-from configuraciones.textos import texto as texto_msj
 
 def confirmar(lista):
-    textos = texto_msj()
-    players_entry,entrada_jugadores,root,botones = lista
+
+    players_entry,entrada_jugadores,root,botones,textos = lista
     MAX_JUGADORES = condiciones_iniciales()["cantidad_jugadores"]
-    cantidad = texto(players_entry.get())
+    cantidad = texto(players_entry.get(),textos)
 
     if cantidad and cantidad <= MAX_JUGADORES:
         entrada_jugadores.pack_forget()
         jugadores = []
         
         diccionario_de_palabras()
-        formulario_ingreso(root,botones,jugadores,cantidad,inicia_app).pack()
+        formulario_ingreso(root,botones,jugadores,cantidad,inicia_app,textos).pack() 
     else:
-        msg_warning(f'{textos["MSJ_MAXIMO_JUGADORES"]} {MAX_JUGADORES}')
+        msg_warning(f'{textos["MSJ_MAXIMO_JUGADORES"]} {MAX_JUGADORES}',textos)
