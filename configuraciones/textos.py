@@ -122,7 +122,9 @@ def texto(idioma):
     }
     
     elif idioma == "en":
-        
+        """
+        DEBERIAMOS TRADUCIR
+
         diccionario_mensajes = {
         "TIEMPO_ADIVINA_PALABRA": "Tiempo en adividinar la palabra: ",
         
@@ -242,6 +244,8 @@ def texto(idioma):
 
         "BOTON_CONFIRMAR": "CONFIRMAR"
     }
+        """
+        pass
     
 
     return diccionario_mensajes
