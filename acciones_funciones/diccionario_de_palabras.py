@@ -1,24 +1,23 @@
 import operator
+import os
 from configuraciones.datos_iniciales import condiciones_iniciales
 
 dicc_palabra = {}
 
 def diccionario_de_palabras():
-  LONG_PALABRA = condiciones_iniciales()["cantidad_letras"]
-  archivo_1 = open("archivos/Cuentos.csv","r")
-  archivo_2=open("archivos/La araña negra - tomo 1.csv","r")
-  archivo_3=open("archivos/Las 1000 Noches y 1 Noche.csv","r")
-  archivo_4=open("archivos/palabras.csv","w")
-  analizador_texto(archivo_1,1,LONG_PALABRA)
-  analizador_texto(archivo_2,2,LONG_PALABRA)
-  analizador_texto(archivo_3,3,LONG_PALABRA)
-  ordenar_palabras(archivo_4)
-  archivo_1.close()
-  archivo_2.close() 
-  archivo_3.close()
-  archivo_4.close()
+    LONG_PALABRA = condiciones_iniciales()["cantidad_letras"]
+    archivos = []
+    with open("archivos/palabras.csv","w") as palabras:
+        for archivo in os.scandir("archivos/textos"):
+            archivos.append(open(f"archivos/textos/{archivo.name}"))
+        
+        for i in range(len(archivos)):
+            analizador_texto(archivos[i],i+1,LONG_PALABRA)
+        
+        ordenar_palabras(palabras)
 
-
+        for i in range(len(archivos)):
+            archivos[i].close()
 
 def leer_Archivo(archivo):
     linea = archivo.readline()
@@ -30,7 +29,6 @@ def leer_Archivo(archivo):
 
 def grabar_Nuevo(archivo,palabra,cantidad1,cantidad2,cantidad3):
     archivo.write(str(palabra) + ',' + str(cantidad1) +","+ str(cantidad2) +","+ str(cantidad3) +'\n')
-
 
 def analizador_texto(texto,num_text,LONG):
   palabras=leer_Archivo(texto)
