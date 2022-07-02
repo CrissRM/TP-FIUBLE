@@ -7,7 +7,7 @@ from acciones_funciones.diccionario_de_palabras import diccionario_de_palabras
 from configuraciones.formatear import formatear_configuracion_archivo
 
 def confirmar(lista):
-  players_entry,configuraciones,root,registro,ingresar,letras_entry,partidas_entry = lista
+  players_entry,configuraciones,root,botones,letras_entry,partidas_entry = lista
 
   MAX_JUGADORES = condiciones_iniciales()["cantidad_jugadores"]
   MAX_LONG_LETRAS = condiciones_iniciales()["max_long_letras"]
@@ -31,5 +31,5 @@ def confirmar(lista):
       
       formatear_configuracion_archivo(cantidad_letras,cantidad_partidas,reiniciar)
       diccionario_de_palabras()
-      formulario_ingreso(root,registro,ingresar,jugadores,cantidad_jugadores,inicia_app).pack()
+      formulario_ingreso(root,botones,jugadores,cantidad_jugadores,inicia_app).pack()
     

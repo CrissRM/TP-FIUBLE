@@ -3,7 +3,7 @@ from accion_botones.confirmar_personalizada import confirmar
 from configuraciones.estilos_widgets import etiqueta,entrada_texto,boton_volver,boton_confirmar,marco_visible,marco_invisible
 
     
-def formulario_configuracion_personalizada(root,registro,ingresar):
+def formulario_configuracion_personalizada(root,botones):
     configuraciones = marco_invisible(root) 
 
     #---CANT JUGADORES
@@ -24,8 +24,8 @@ def formulario_configuracion_personalizada(root,registro,ingresar):
     #-----------------------------------------------------------------------------
     frame_botones = marco_visible(configuraciones)
 
-    boton_confirmar(frame_botones,confirmar,[players_entry,configuraciones,root,registro,ingresar,letras_entry,partidas_entry])
+    boton_confirmar(frame_botones,confirmar,[players_entry,configuraciones,root,botones,letras_entry,partidas_entry])
 
-    boton_volver(frame_botones,volver,[configuraciones,registro,ingresar])
+    boton_volver(frame_botones,volver,[configuraciones,botones])
 
     return configuraciones

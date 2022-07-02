@@ -4,7 +4,7 @@ from accion_botones.volver import volver
 
 def guardar(argumentos):
   
-  form_registro,btn_registro,btn_ingreso,nombre_entry,clave_entry,clave_entry_repeat = argumentos
+  form_registro,cuadro_botones,nombre_entry,clave_entry,clave_entry_repeat = argumentos
   nombre = nombre_entry.get()
   password = clave_entry.get()
   password_repeat = clave_entry_repeat.get()
@@ -31,5 +31,5 @@ def guardar(argumentos):
           clave_entry.delete(0,"end")
           clave_entry_repeat.delete(0,"end")
         else:
-          volver([form_registro,btn_registro,btn_ingreso])
+          volver([form_registro,cuadro_botones])
 

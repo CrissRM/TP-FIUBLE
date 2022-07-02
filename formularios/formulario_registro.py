@@ -2,7 +2,7 @@ from accion_botones.volver import volver
 from accion_botones.guardar import guardar
 from configuraciones.estilos_widgets import entrada_texto,entrada_clave,etiqueta,boton_volver,boton_guardar_registro,marco_visible,marco_invisible
 
-def formulario_registro(root,btn_registro,btn_ingreso):
+def formulario_registro(root,cuadro_botones):
   formulario_registro = marco_invisible(root)
   
   #-----------------------------------------------------------------------------
@@ -24,8 +24,8 @@ def formulario_registro(root,btn_registro,btn_ingreso):
   
 # --------------------------BOTONES OPCIONES--------------------------
   botones = marco_visible(formulario_registro)
-  boton_volver(botones,volver,[formulario_registro,btn_ingreso,btn_registro])
-  boton_guardar_registro(botones,guardar,[formulario_registro,btn_registro,btn_ingreso,nombre_entry,clave_entry,clave_entry_repeat])
+  boton_volver(botones,volver,[formulario_registro,cuadro_botones])
+  boton_guardar_registro(botones,guardar,[formulario_registro,cuadro_botones,nombre_entry,clave_entry,clave_entry_repeat])
   
   
   return formulario_registro

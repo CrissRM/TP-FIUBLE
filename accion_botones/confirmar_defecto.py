@@ -6,7 +6,7 @@ from app.app_consola import inicia_app
 from configuraciones.estilos_widgets import msg_warning
 
 def confirmar(lista):
-    players_entry,entrada_jugadores,root,registro,ingresar = lista
+    players_entry,entrada_jugadores,root,botones = lista
     MAX_JUGADORES = condiciones_iniciales()["cantidad_jugadores"]
     cantidad = texto(players_entry.get())
 
@@ -15,6 +15,6 @@ def confirmar(lista):
         jugadores = []
         
         diccionario_de_palabras()
-        formulario_ingreso(root,registro,ingresar,jugadores,cantidad,inicia_app).pack()
+        formulario_ingreso(root,botones,jugadores,cantidad,inicia_app).pack()
     else:
         msg_warning(f"El juego está implementado para un máximo de {MAX_JUGADORES}jugadoes")

@@ -3,7 +3,7 @@ from accion_botones.volver import volver
 from configuraciones.estilos_widgets import etiqueta,entrada_texto,boton_confirmar,boton_volver,marco_visible,marco_invisible
 
 
-def formulario_configuracion_defecto(root,registro,ingresar):
+def formulario_configuracion_defecto(root,botones):
     
     entrada_jugadores = marco_invisible(root)
     #------------------------------------------------------------------------------
@@ -12,8 +12,8 @@ def formulario_configuracion_defecto(root,registro,ingresar):
     players_entry = entrada_texto(jugadores)
     #-----------------------------------------------------------------------------
     marco_botones = marco_visible(entrada_jugadores)
-    boton_confirmar(marco_botones,confirmar,[players_entry,entrada_jugadores,root,registro,ingresar])
+    boton_confirmar(marco_botones,confirmar,[players_entry,entrada_jugadores,root,botones])
 
-    boton_volver(marco_botones,volver,[entrada_jugadores,registro,ingresar])
+    boton_volver(marco_botones,volver,[entrada_jugadores,botones])
   
     return entrada_jugadores

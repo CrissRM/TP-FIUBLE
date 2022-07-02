@@ -14,7 +14,7 @@ def titulo_aplicacion(root):
         foreground=estilos["FOREGROUND_PRIMARY"],
         ).pack(side="top",padx=10,pady=10)
 
-def boton_registar(root,funct):
+def boton_registar(root,funct,arg):
     boton = Button(
         root,
         text="REGISTARSE",
@@ -25,7 +25,7 @@ def boton_registar(root,funct):
         background=estilos["BACKGROUND_BUTTON_REGISTRO"],
         foreground=estilos["FOREGROUND_BUTTON_REGISTRO"],
         activebackground=estilos["BACKGROUND_BUTTON_REGISTRO_ACTIVE"],
-        command=funct
+        command=lambda: funct(arg)
         )
     boton.pack(
             side="left",
@@ -35,7 +35,7 @@ def boton_registar(root,funct):
     
     return boton
 
-def boton_ingresar(root,funct):
+def boton_ingresar(root,funct,arg):
     boton = Button(
         root,
         text="INGRESAR",
@@ -46,7 +46,7 @@ def boton_ingresar(root,funct):
         background=estilos["BACKGROUND_BUTTON_INGRESO"],
         foreground=estilos["FOREGROUND_BUTTON_INGRESO"],
         activebackground=estilos["BACKGROUND_BUTTON_INGRESO_ACTIVE"],
-        command=funct
+        command=lambda: funct(arg)
         )
     boton.pack(
             side="left",
