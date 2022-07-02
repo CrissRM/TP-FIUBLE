@@ -1,5 +1,17 @@
-from tkinter import Label,Button,Entry,Label,Frame,messagebox as mb
+from tkinter import Tk,Label,Button,Entry,Label,Frame,messagebox as mb
 from configuraciones.estilos import estilos
+from configuraciones.textos import texto
+
+textos = texto()
+
+def interfaz():
+    root = Tk()
+    root.title("FIUBLE - SERPIENTE")
+    root.geometry("+300+200")
+    root.minsize(width=700,height=400)
+    root.configure(background=estilos["BACKGROUND_PRIMARY"])
+
+    return root
 
 def titulo_aplicacion(root):
     return Label(
@@ -181,14 +193,13 @@ def marco_invisible(root):
     return marco
 
 def msg_warning(msg):
-  mb.showwarning("Advertencia",msg)
+  mb.showwarning(textos["WIDGET_WARNING_TITULO"],msg)
 
 def msg_error(msg):
-  mb.showerror("Error",msg)
+  mb.showerror(textos["WIDGET_ERROR_TITULO"],msg)
 
 def msg_info(msg):
-  mb.showinfo("Info",msg)
+  mb.showinfo(textos["WIDGET_INFO_TITULO"],msg)
 
 def msg_confirm(msg):
-  return mb.askyesno("Preguntar",msg)
-  
+  return mb.askyesno(textos["WIDGET_CONFIRM_TITULO"],msg)

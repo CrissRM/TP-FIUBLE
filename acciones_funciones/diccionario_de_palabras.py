@@ -1,5 +1,6 @@
 import operator
 import os
+from pathlib import Path
 from configuraciones.datos_iniciales import condiciones_iniciales
 
 dicc_palabra = {}
@@ -9,7 +10,9 @@ def diccionario_de_palabras():
     archivos = []
     with open("archivos/palabras.csv","w") as palabras:
         for archivo in os.scandir("archivos/textos"):
-            archivos.append(open(f"archivos/textos/{archivo.name}"))
+            archivo = Path(archivo.name)
+            if archivo.suffix == ".csv" or archivo.suffix == ".txt":
+                archivos.append(open(f"archivos/textos/{archivo.name}"))
         
         for i in range(len(archivos)):
             analizador_texto(archivos[i],i+1,LONG_PALABRA)

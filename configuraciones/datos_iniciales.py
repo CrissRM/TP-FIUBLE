@@ -18,31 +18,40 @@ def obtener_color(letra,color):
   }
   return colores[color] + letra + colores["ENDC"]
 
-def obtener_palabras_validas(): 
-    archivo = open("archivos/palabras.csv")
-  
+def obtener_palabras_validas():
     lista_palabra_secreta = []
-    palabra = archivo.readline().split(",")[0]
+    try:
+        with  open("archivos/palabras.csv") as archivo:
+            palabra = archivo.readline().split(",")[0]
 
-    while palabra !="":
-        lista_palabra_secreta.append(formatear_palabra(palabra)) 
-        palabra = archivo.readline().split(",")[0]
+            while palabra !="":
+                lista_palabra_secreta.append(formatear_palabra(palabra)) 
+                palabra = archivo.readline().split(",")[0]
+    except FileNotFoundError:
+        lista_palabra_secreta.append(["Default,0,0,0"])
 
-    archivo.close() 
+
+    
 
     return lista_palabra_secreta 
 
 def condiciones_iniciales():
-  
     configuraciones = []
-    archivo = open("archivos/configuracion.csv")
-    linea = formatear_linea(archivo.readline())[1] 
-    while linea !="":
-        configuraciones.append(linea)
-        linea = formatear_linea(archivo.readline())[1]
-
-    archivo.close()
-
+    with open("archivos/configuracion.csv","w+") as archivo:
+            archivo.write("LONGITUD_PALABRA_SECRETA,7\n")
+            archivo.write("MAXIMO_PARTIDAS,5\n")
+            archivo.write("REINICIAR_ARCHIVO_PARTIDAS,False\n")
+            archivo.write("CREDITOS_MAX,5\n")
+            archivo.write("CANTIDAD_MAX_JUGADORES,2\n")
+            
+            archivo.seek(0)
+            linea = formatear_linea(archivo.readline())[1] 
+            while linea !="":
+                configuraciones.append(linea)
+                linea = formatear_linea(archivo.readline())[1]
+    
+        
+    
     LONGITUD_PALABRA_SECRETA,MAXIMO_PARTIDAS,REINICIAR_ARCHIVO_PARTIDAS,CREDITOS_MAX,CANTIDAD_MAX_JUGADORES = configuraciones
   
   

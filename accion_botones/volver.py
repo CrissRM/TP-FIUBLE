@@ -1,5 +1,5 @@
 def volver(argumentos):
   frame_hidden,cuadro_botones = argumentos
   frame_hidden.pack_forget()
-  cuadro_botones.pack()
+  cuadro_botones.pack() 
   

@@ -1,13 +1,14 @@
 from datetime import datetime
 from app.inicia_juego import inicia_juego
 from configuraciones.formatear import formatear_configuracion_archivo
+from configuraciones.textos import texto
 
 def inicia_app(jugadores):  
-    
+    textos = texto()
     estadisticas_finales_jugadores = inicia_juego(jugadores)
     
     print("\n\n","*"*75)
-    print("*"*30,"FIN  DEL JUEGO","*"*30,"\n")
+    print("*"*30,textos["JUEGO_FINALIZADO"],"*"*30,"\n")
   
     lista_puntucaciones = list(estadisticas_finales_jugadores.values())
     lista_puntucaciones.sort(reverse=True)
@@ -16,10 +17,10 @@ def inicia_app(jugadores):
         hora_finalizacion = datetime.today().strftime("%H:%M:%S")
         estadisticas_finales_jugadores[jugador][2] =hora_finalizacion
         if data[0] == lista_puntucaciones[0][0]:
-            print(f"GANADOR: {jugador} ----> OBTUVO: {data[0]}")
+            print(f"{textos['TEXTO_GANADOR']}: {jugador} ----> {textos['TEXTO_OBTUVO']}: {data[0]}")
   
     print("\n","*"*75)
-    input("\n\nEnter para finalizar...")
+    input(f"\n\n{textos['TEXTO_FINALIZAR']}")
   
     archivo = open("archivos/partidas.csv","a+")
     for jugador,data in estadisticas_finales_jugadores.items():

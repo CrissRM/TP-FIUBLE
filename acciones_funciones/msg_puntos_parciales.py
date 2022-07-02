@@ -1,4 +1,7 @@
 from configuraciones.formatear import formatear_tiempo
+from configuraciones.textos import texto
+
+textos = texto()
 
 def msg_puntos_parciales(puntos,ronda_terminada,dicc_jugadores):
 
@@ -36,13 +39,13 @@ def mensaje_for(dicc_jugadores,puntos_ronda,ronda_terminada):
           mensaje_if_green(jugador,-puntos_ronda,puntos)
 
 def mensaje_para_usurio(dicc_jugadores,puntos_ronda,ronda_terminada):
-  print("\n\x1b[33m","*"*33,"PUNTAJES","*"*33,"\x1b[0m")
-  print("\n\x1b[33m"," "*20,f"{'JUGADOR':15} | {'PUNTOS':6} | {'ACUMULADO':9} |\x1b[0m")
+  print("\n\x1b[33m","*"*33,{textos["CABECERA_PUNTAJES"]},"*"*33,"\x1b[0m")
+  print("\n\x1b[33m"," "*20,f'{textos["COL_JUGADOR"]:15} | {textos["COL_PUNTOS"]:6} | {textos["COL_ACOMULADO"]:9} |\x1b[0m')
   
   if ronda_terminada["ganador_parcial"]:
     sumar_acierto(ronda_terminada,dicc_jugadores)
     mensaje_for(dicc_jugadores,puntos_ronda,ronda_terminada)
-    print(f"\n          Tiempo en adiviniar la palabra: {formatear_tiempo(ronda_terminada)}") 
+    print(f"\n          {textos['TIEMPO_ADIVINA_PALABRA']} {formatear_tiempo(ronda_terminada)}") 
 
   else:
     mensaje_for(dicc_jugadores,puntos_ronda,ronda_terminada)

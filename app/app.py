@@ -1,12 +1,14 @@
-from acciones_funciones.validadores import validar_condicion_palabra
-from configuraciones.datos_iniciales import obtener_color
 from time import time
 from random import choice
+from acciones_funciones.validadores import validar_condicion_palabra
+from configuraciones.datos_iniciales import obtener_color
+from configuraciones.textos import texto
 
     
 def application(datos_iniciales,dicc_jugadores):
+    textos = texto()
     print("\x1b[33m","*"*50,"\x1b[0m")
-    print("\x1b[33m","*"*10,"JUEGO INICIADO","*"*10,"\x1b[0m")
+    print("\x1b[33m","*"*10,textos["JUEGO_INICIALIZADO"],"*"*10,"\x1b[0m")
     
     contador_credito = datos_iniciales["contador_credito"]
     jugadores = list(datos_iniciales["jugadores"].keys())
@@ -63,7 +65,6 @@ def application(datos_iniciales,dicc_jugadores):
         "contador_credito": contador_credito,
         "ganador_parcial": ganador_parcial,
         "turno": turno,
-        # "cambiar_turno": alternador_turnos(turno,jugadores)
         "cambiar_turno": choice([jugador for jugador in jugadores if jugador != turno]) if len(jugadores) >1 else  jugadores[0]
     }
 

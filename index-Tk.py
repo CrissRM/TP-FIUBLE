@@ -1,24 +1,33 @@
-import tkinter as tk
-from configuraciones.estilos import estilos
-from formularios.formulario_registro import formulario_registro
-from formularios.formulario_configuracion_personalizada import formulario_configuracion_personalizada
-from formularios.formulario_configuracion_defecto import formulario_configuracion_defecto
-from configuraciones.estilos_widgets import *
+import os
+from pathlib import Path
 from accion_botones.registrar import registrarse
-from accion_botones.ingresar import ingresar as ingreso
+from accion_botones.ingresar import ingresar
+from configuraciones.estilos_widgets import *
+from formularios.formulario_registro import formulario_registro
+from formularios.formulario_configuracion_personalizada import formulario_configuracion_personalizada as personalizado
+from formularios.formulario_configuracion_defecto import formulario_configuracion_defecto as defecto
+from configuraciones.textos import texto
 
 def interfaz_grafica():
-    root = tk.Tk()
-    root.title("FIUBLE - SERPIENTE")
-    root.geometry("+300+200")
-    root.minsize(width=700,height=400)
-    root.configure(background=estilos["BACKGROUND_PRIMARY"])
+    textos = texto()
+    root = interfaz()
+    
+    lista_textos = []
+    for archivos in  os.scandir("archivos/textos"):
+        archivo = Path(archivos.name)
+        if archivo.suffix == ".csv" or archivo.suffix == ".txt":
+            lista_textos.append(archivos.name)
+    
+    if len(lista_textos) == 0:
+        msg_error(textos["MSJ_ERROR_SIN_ARCHIVO"])
+        msg_info(textos["MSJ_CERRAR_PROGRAMA"])
+        root.destroy()
+    else:
+        titulo_aplicacion(root)
 
-    titulo_aplicacion(root)
-
-    botones = marco_visible(root)
-    boton_registar(botones,registrarse,[formulario_registro,root,botones]) 
-    boton_ingresar(botones,ingreso,[botones,formulario_configuracion_defecto(root,botones),formulario_configuracion_personalizada(root,botones)])
+        botones = marco_visible(root)
+        boton_registar(botones,registrarse,[formulario_registro,root,botones]) 
+        boton_ingresar(botones,ingresar,[botones,defecto(root,botones),personalizado(root,botones)])
 
     root.mainloop()
 

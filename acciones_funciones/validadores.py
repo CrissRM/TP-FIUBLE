@@ -1,5 +1,8 @@
 from configuraciones.estilos_widgets import msg_error,msg_warning
 from configuraciones.datos_iniciales import formatear_linea,condiciones_iniciales
+from configuraciones.textos import texto as texto_msj
+
+textos = texto_msj()
 
 def nombre(nombre):
     if 4<= len(nombre) <=15:
@@ -11,12 +14,12 @@ def nombre(nombre):
                 error = True
             i +=1
         if error:
-            msg_error("El nombre solo acepta caracteres alfabéticos, numéricos y el guión bajo")
+            msg_error(textos["MSJ_ERROR_NOMBRE"])
             res = False
         else:
             res = True
     else:
-        msg_warning("El nombre debe no puede tener menos de 4 o más de 15 caracteres")
+        msg_warning(textos["MSJ_ERROR_RANGO_NOMBRE"])
         res = False
     return res
 
@@ -124,31 +127,31 @@ def contrasenia(password,error = False,exceso_char=False):
 
         if not error:
             if cont_mayusculas == 0:
-                msg_error("La contraseña debe contener por lo menos una letra mayúsculas")
+                msg_error(textos["MSJ_ERROR_CONTRASEÑA_MAYUSCULAS"])
                 res = False
             elif cont_minusculas == 0:
-                msg_error("La contraseña debe contener por lo menos una letra minúscula")
+                msg_error(textos["MSJ_ERROR_CONTRASEÑA_MINUSCULAS"])
                 res = False
             elif cont_numero == 0:
-                msg_error("La contraseña debe contener por lo menos un numero")
+                msg_error(textos["MSJ_ERROR_CONTRASEÑA_NUMERO"])
                 res = False
             elif (cont_guion >0 and cont_guion_bajo >0):
-                msg_error("La contraseña debe contener alguno de los caracteres '-' o '_'  pero no ambos")
+                msg_error(textos["MSJ_ERROR_CONTRASEÑA_AMBOS_ESPECIAL"])
                 res = False
             elif cont_guion == 0 and cont_guion_bajo==0:
-                msg_error("La contraseña debe contener alguno de los caracteres '-' o '_'")
+                msg_error(textos["MSJ_ERROR_CONTRASEÑA_MIN_ESPECIAL"])
                 res = False
             elif (cont_guion>1 and cont_guion_bajo==0) or (cont_guion_bajo>1 and cont_guion ==0):
-                msg_error("La contraseña no puede tener mas un un'-' ó un '_'")
+                msg_error(textos["MSJ_ERROR_CONTRASEÑA_UNO_ESPECIAL"])
                 res =False
             else:
                 res = True
         else:
-            msg_error("La contraseña debe estar compuesta solo por caracteres alfanuméricos excepto por alguno de los caractres '_' ó '-'")
+            msg_error(textos["MSJ_ERROR_CONTRASEÑA_CARACTER_INVALIDO"])
             res = False
             error = True
     else:
-        msg_error("La contraseña debe tener mas de 8 caracteres y menos de 12")
+        msg_error(textos["MSJ_ERROR_CONTRASEÑA_CANTIDAD_CARACTERES"])
         res = False
 
   
@@ -158,11 +161,11 @@ def texto(valor):
   try:
     valor_a_validar = int(valor)
   except ValueError:
-    msg_error("No es valido. Ingresar números enteros")
+    msg_error(textos["MSJ_CARACTER_INVALIDO_SOLO_NUMEROS"])
     valor_a_validar = False
   else:
     if valor_a_validar <= 0:
-      msg_warning("No es un valor, válido")
+      msg_warning(textos["MSJ_NUMEROS_NEGATIVOS"])
       valor_a_validar = False
   return valor_a_validar
 
@@ -192,7 +195,7 @@ def sesion(nombre,contrasenia):
           existe  = True
         jugador,password = formatear_linea(archivo_csv.readline())
   except FileNotFoundError:
-    msg_error("No hay usuarios registrados")
+    msg_error(textos["MSJ_ERROR_SIN_USUARIOS"])
     
     
   return existe
@@ -218,13 +221,13 @@ def validar_condicion_palabra():
     
     MAX_LETRAS = condiciones_iniciales()["cantidad_letras"]
   
-    palabra=input("Arriesgo :")
+    palabra=input(textos["INGRESAR_PALABRA_TABLERO"])
     while len(palabra)!=MAX_LETRAS or (not palabra.isalpha()):
         if len(palabra)!=MAX_LETRAS:
-            print(f"la palabra debe tener {MAX_LETRAS} letras y tiene {len(palabra)}")
+            print(f"{textos['INFORMA_MAX_LETRAS']} {MAX_LETRAS} {textos['CONCATENADO_MAX_LETRAS']}{len(palabra)}")
         elif not palabra.isalpha() :
-            print(f"La palabra debe contener solo letras")
-        palabra=input("Arriesgo :") 
+            print(textos["INFORMA_PALABRAS_SOLO_LETRAS"])
+        palabra=input(textos["INGRESAR_PALABRA_TABLERO"]) 
         palabra = formatear_palabra(palabra)
     
     return palabra.lower() 
