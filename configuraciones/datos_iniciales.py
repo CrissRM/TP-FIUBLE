@@ -36,22 +36,14 @@ def obtener_palabras_validas():
     return lista_palabra_secreta 
 
 def condiciones_iniciales():
-    configuraciones = []
-    with open("archivos/configuracion.csv","w+") as archivo:
-            archivo.write("LONGITUD_PALABRA_SECRETA,7\n")
-            archivo.write("MAXIMO_PARTIDAS,5\n")
-            archivo.write("REINICIAR_ARCHIVO_PARTIDAS,False\n")
-            archivo.write("CREDITOS_MAX,5\n")
-            archivo.write("CANTIDAD_MAX_JUGADORES,2\n")
-            
-            archivo.seek(0)
-            linea = formatear_linea(archivo.readline())[1] 
-            while linea !="":
-                configuraciones.append(linea)
-                linea = formatear_linea(archivo.readline())[1]
+    with open("archivos/configuracion.csv") as archivo: 
+        configuraciones = []
+        linea = formatear_linea(archivo.readline())[1] 
+        while linea !="":
+            configuraciones.append(linea)
+            linea = formatear_linea(archivo.readline())[1]
     
-        
-    
+
     LONGITUD_PALABRA_SECRETA,MAXIMO_PARTIDAS,REINICIAR_ARCHIVO_PARTIDAS,CREDITOS_MAX,CANTIDAD_MAX_JUGADORES = configuraciones
   
   

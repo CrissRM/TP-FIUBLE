@@ -10,6 +10,14 @@ from configuraciones.textos import texto
 
 def interfaz_grafica():
     textos = texto("es")
+    
+    with open("archivos/configuracion.csv","w+") as archivo: 
+            archivo.write("LONGITUD_PALABRA_SECRETA,7\n")
+            archivo.write("MAXIMO_PARTIDAS,5\n")
+            archivo.write("REINICIAR_ARCHIVO_PARTIDAS,False\n")
+            archivo.write("CREDITOS_MAX,5\n")
+            archivo.write("CANTIDAD_MAX_JUGADORES,2\n")
+            
     root = interfaz()
     
     lista_textos = []
@@ -19,8 +27,8 @@ def interfaz_grafica():
             lista_textos.append(archivos.name)
     
     if len(lista_textos) == 0: 
-        msg_error(textos["MSJ_ERROR_SIN_ARCHIVO"])
-        msg_info(textos["MSJ_CERRAR_PROGRAMA"])
+        msg_error(textos["MSJ_ERROR_SIN_ARCHIVO"],textos)
+        msg_info(textos["MSJ_CERRAR_PROGRAMA"],textos)
         root.destroy()
     else:
         titulo_aplicacion(root)

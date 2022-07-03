@@ -19,7 +19,7 @@ def formulario_ingreso(root,botones,jugadores,cant,inicia_app,textos):
   
   #-----------------------------------------------------------------------------
   botones = marco_visible(formulario_ingreso)
-  boton_volver(botones,volver,[formulario_ingreso,botones,textos])
+#   boton_volver(botones,volver,[formulario_ingreso,botones,textos])
   boton_acceder(botones,acceder,[nombre_entry,clave_entry,jugadores,cant,inicia_app,root,textos])
   #----------------------------------------------------------------------------
   
